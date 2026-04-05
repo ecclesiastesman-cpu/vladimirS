@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Владимир Pro Max 40 — ВладимириС</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink:       #CB11AB;
+  --pink-dark:  #A30D8A;
+  --pink-light: #E040C8;
+  --pink-pale:  #FDF0FB;
+  --pink-mid:   #F2C8ED;
+  --utility:    #4A0D3A;
+  --bg:         #F5F0F5;
+  --white:      #FFFFFF;
+  --star:       #FFB800;
+  --green:      #1AA05B;
+  --red:        #E02B2B;
+  --border:     #EBEBEB;
+  --text:       #1C1C1C;
+  --muted:      #757575;
+  --tag-bg:     #F8F0F7;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+a{text-decoration:none;color:inherit}
+
+/* ── UTILITY BAR ─────────────────────────────────────────── */
+.utility-bar{
+  background:var(--utility);
+  color:rgba(255,255,255,.75);
+  font-size:12px;
+  padding:6px 0;
+}
+.utility-inner{
+  max-width:1280px;margin:0 auto;
+  padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.utility-left{display:flex;align-items:center;gap:16px}
+.utility-city{color:#fff;font-weight:600;cursor:pointer}
+.utility-city:hover{text-decoration:underline}
+.utility-links{display:flex;gap:14px}
+.utility-links a{color:rgba(255,255,255,.7);font-size:12px}
+.utility-links a:hover{color:#fff}
+.utility-right{display:flex;gap:16px}
+.utility-right a{color:rgba(255,255,255,.7);font-size:12px}
+.utility-right a:hover{color:#fff}
+
+/* ── HEADER ──────────────────────────────────────────────── */
+.header{
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;
+}
+.header-inner{
+  max-width:1280px;margin:0 auto;
+  padding:12px 24px;
+  display:flex;align-items:center;gap:20px;
+}
+.logo{
+  font-family:'Nunito',sans-serif;
+  font-weight:900;font-size:22px;
+  color:var(--pink);
+  white-space:nowrap;letter-spacing:-0.5px;
+  min-width:fit-content;
+}
+.logo span{color:var(--utility)}
+.search-wrap{flex:1;display:flex}
+.search-wrap input{
+  flex:1;border:2px solid var(--pink);border-right:none;
+  border-radius:4px 0 0 4px;
+  padding:9px 14px;font-size:14px;outline:none;
+  font-family:'Inter',sans-serif;
+}
+.search-wrap button{
+  background:var(--pink);color:#fff;border:none;
+  padding:9px 16px;border-radius:0 4px 4px 0;cursor:pointer;
+  font-size:16px;
+}
+.search-wrap button:hover{background:var(--pink-dark)}
+.header-icons{display:flex;gap:4px;align-items:center}
+.hicon{
+  display:flex;flex-direction:column;align-items:center;
+  gap:2px;padding:6px 10px;border-radius:6px;cursor:pointer;
+  color:var(--muted);font-size:11px;white-space:nowrap;
+  position:relative;
+}
+.hicon:hover{background:var(--bg);color:var(--pink)}
+.hicon svg,.hicon .ico{font-size:20px}
+.cart-badge{
+  position:absolute;top:2px;right:6px;
+  background:var(--pink);color:#fff;
+  font-size:10px;font-weight:700;
+  width:16px;height:16px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ── NAV CATEGORIES ──────────────────────────────────────── */
+.nav-cats{
+  background:#fff;border-bottom:1px solid var(--border);
+}
+.nav-cats-inner{
+  max-width:1280px;margin:0 auto;
+  padding:0 24px;
+  display:flex;gap:0;overflow-x:auto;
+}
+.nav-cats-inner::-webkit-scrollbar{height:2px}
+.nav-cats-inner::-webkit-scrollbar-thumb{background:var(--pink)}
+.cat-link{
+  padding:10px 16px;font-size:13px;font-weight:500;
+  color:var(--text);white-space:nowrap;
+  border-bottom:2px solid transparent;
+  transition:all .15s;
+}
+.cat-link:hover,.cat-link.active{
+  color:var(--pink);border-bottom-color:var(--pink);
+}
+
+/* ── BREADCRUMB ──────────────────────────────────────────── */
+.breadcrumb{
+  max-width:1280px;margin:0 auto;
+  padding:12px 24px;
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;color:var(--muted);
+}
+.breadcrumb a{color:var(--muted)}
+.breadcrumb a:hover{color:var(--pink)}
+.breadcrumb span{color:#bbb}
+
+/* ── PRODUCT LAYOUT ──────────────────────────────────────── */
+.product-page{
+  max-width:1280px;margin:0 auto;
+  padding:0 24px 40px;
+}
+.product-grid{
+  display:grid;
+  grid-template-columns:380px 1fr 300px;
+  gap:24px;
+  align-items:start;
+}
+
+/* ── GALLERY ─────────────────────────────────────────────── */
+.gallery{position:sticky;top:80px}
+.main-photo{
+  background:#fff;border:1px solid var(--border);
+  border-radius:8px;overflow:hidden;
+  position:relative;margin-bottom:10px;
+}
+.main-photo img{
+  width:100%;aspect-ratio:1/1;
+  object-fit:cover;object-position:center top;
+  display:block;
+}
+.color-badge{
+  position:absolute;bottom:12px;left:12px;
+  background:rgba(0,0,0,.55);color:#fff;
+  font-size:12px;padding:4px 10px;border-radius:20px;
+  display:flex;align-items:center;gap:6px;
+}
+.color-dot{
+  width:12px;height:12px;border-radius:50%;
+  background:linear-gradient(135deg,#f47920,#ff8c42);
+  border:1px solid rgba(255,255,255,.5);
+}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap}
+.thumb{
+  width:72px;height:72px;
+  border:2px solid var(--border);border-radius:6px;
+  overflow:hidden;cursor:pointer;transition:border-color .15s;
+}
+.thumb:hover,.thumb.active{border-color:var(--pink)}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:center top}
+
+/* ── PRODUCT INFO ────────────────────────────────────────── */
+.product-info{}
+.store-link{
+  font-size:13px;color:var(--pink);font-weight:500;
+  display:inline-flex;align-items:center;gap:4px;
+  margin-bottom:10px;
+}
+.store-link:hover{text-decoration:underline}
+.product-title{
+  font-size:22px;font-weight:700;line-height:1.3;
+  margin-bottom:12px;
+}
+.rating-row{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:16px;flex-wrap:wrap;
+}
+.stars{color:var(--star);font-size:16px;letter-spacing:1px}
+.rating-num{font-weight:700;font-size:15px}
+.reviews-count{color:var(--muted);font-size:13px;text-decoration:underline;cursor:pointer}
+.reviews-count:hover{color:var(--pink)}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.badge{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:5px 12px;border-radius:4px;
+  font-size:12px;font-weight:600;
+}
+.badge-promo{background:#FF3E3E;color:#fff}
+.badge-stock{background:var(--green);color:#fff}
+.badge-bday{background:linear-gradient(135deg,#f47920,#ff6b00);color:#fff}
+.badge-limited{background:var(--utility);color:#fff}
+
+.desc-block{background:#fff;border-radius:8px;padding:20px;margin-bottom:16px;border:1px solid var(--border)}
+.desc-block h3{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--text)}
+.desc-text{font-size:14px;line-height:1.7;color:#333}
+.warn-box{
+  background:#FFF8E1;border-left:3px solid var(--star);
+  border-radius:0 6px 6px 0;
+  padding:12px 14px;margin:12px 0;
+  font-size:13px;line-height:1.6;
+}
+.guarantee-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;margin-top:12px;
+}
+.guarantee-item{
+  background:var(--bg);border-radius:6px;
+  padding:12px;font-size:13px;line-height:1.5;
+}
+.guarantee-item strong{display:block;font-weight:700;margin-bottom:2px}
+
+/* SPECS */
+.specs-table{width:100%;border-collapse:collapse}
+.specs-table tr:nth-child(even){background:var(--bg)}
+.specs-table td{
+  padding:9px 12px;font-size:13px;border-bottom:1px solid var(--border);
+}
+.specs-table td:first-child{color:var(--muted);width:45%}
+
+/* PROGRESS BARS */
+.stat-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.stat-label{font-size:12px;width:200px;color:var(--muted)}
+.stat-bar{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.stat-fill{height:100%;border-radius:3px;background:var(--pink)}
+.stat-val{font-size:12px;font-weight:700;width:40px;text-align:right}
+
+/* PERKS */
+.perks{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.perk{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--bg);border-radius:6px;padding:12px;
+}
+.perk-badge{
+  font-size:18px;font-weight:900;min-width:36px;
+  text-align:center;color:var(--pink);
+}
+.perk-text{font-size:13px;line-height:1.5}
+
+/* ALSO IN KIT */
+.kit-section{background:#fff;border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px}
+.kit-section h3{font-size:14px;font-weight:700;margin-bottom:12px}
+.kit-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.kit-photo{width:64px;height:64px;border-radius:50%;overflow:hidden;border:2px solid var(--border);flex-shrink:0}
+.kit-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.kit-label{font-size:13px;font-weight:600;margin-bottom:2px}
+.kit-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.kit-tag{display:inline-block;background:var(--green);color:#fff;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin-top:4px}
+.kit-also{background:var(--bg);border-radius:6px;padding:12px;font-size:13px;line-height:1.7;color:#333}
+
+/* ── PRICE PANEL ─────────────────────────────────────────── */
+.price-panel{
+  background:#fff;border:1px solid var(--border);
+  border-radius:8px;padding:20px;
+  position:sticky;top:80px;
+}
+.price-main{
+  font-size:36px;font-weight:900;color:var(--pink);
+  line-height:1;margin-bottom:4px;
+}
+.price-old{
+  font-size:16px;color:var(--muted);
+  text-decoration:line-through;margin-bottom:4px;
+}
+.price-badge{
+  display:inline-block;background:var(--pink);color:#fff;
+  font-size:11px;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:8px;
+}
+.price-note{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.5}
+.delivery-info{
+  background:var(--bg);border-radius:6px;
+  padding:12px;margin-bottom:16px;
+}
+.delivery-row{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:13px;margin-bottom:8px;line-height:1.5;
+}
+.delivery-row:last-child{margin-bottom:0}
+.delivery-row .ico{font-size:14px;margin-top:1px}
+.stock-warn{
+  background:#FFF3E0;border:1px solid #FFB300;
+  border-radius:6px;padding:10px 12px;
+  font-size:13px;margin-bottom:14px;
+  display:flex;align-items:center;gap:6px;
+}
+.color-select{margin-bottom:16px}
+.color-label{font-size:12px;color:var(--muted);margin-bottom:8px}
+.color-opt{
+  display:inline-block;width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,#f47920,#ff8c42);
+  border:3px solid var(--pink);cursor:pointer;
+}
+.btn-buy{
+  width:100%;padding:13px;border:none;border-radius:6px;
+  font-size:15px;font-weight:700;cursor:pointer;
+  margin-bottom:10px;transition:background .15s;
+  font-family:'Inter',sans-serif;
+}
+.btn-buy-now{background:var(--pink);color:#fff}
+.btn-buy-now:hover{background:var(--pink-dark)}
+.btn-add-cart{background:var(--pink-pale);color:var(--pink);border:1.5px solid var(--pink-mid)}
+.btn-add-cart:hover{background:var(--pink-mid)}
+.panel-bonus{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+
+/* ── REVIEWS ─────────────────────────────────────────────── */
+.reviews-section{
+  background:#fff;border:1px solid var(--border);
+  border-radius:8px;padding:24px;margin-top:24px;
+}
+.reviews-section h2{font-size:18px;font-weight:700;margin-bottom:20px}
+.rating-summary{
+  display:flex;align-items:center;gap:32px;
+  padding-bottom:20px;border-bottom:1px solid var(--border);
+  margin-bottom:24px;flex-wrap:wrap;gap:20px;
+}
+.big-rating{text-align:center}
+.big-num{font-size:56px;font-weight:900;color:var(--pink);line-height:1}
+.big-stars{color:var(--star);font-size:20px;letter-spacing:2px;margin:4px 0}
+.big-count{font-size:13px;color:var(--muted)}
+.rating-bars{flex:1;min-width:180px}
+.rbar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.rbar-label{font-size:12px;color:var(--muted);width:24px;text-align:right}
+.rbar-track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.rbar-fill{height:100%;background:var(--star);border-radius:3px}
+.rbar-count{font-size:12px;color:var(--muted);width:20px}
+
+.review-cards{display:flex;flex-direction:column;gap:20px}
+.review-card{
+  border-bottom:1px solid var(--border);
+  padding-bottom:20px;
+}
+.review-card:last-child{border-bottom:none;padding-bottom:0}
+.review-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.review-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--pink-pale);border:1.5px solid var(--pink-mid);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.reviewer-name{font-weight:700;font-size:14px}
+.reviewer-role{font-size:12px;color:var(--muted)}
+.review-stars{color:var(--star);font-size:14px;letter-spacing:1px}
+.review-text{font-size:14px;line-height:1.7;color:#333;margin-bottom:8px}
+.review-photos{display:grid;grid-template-columns:repeat(2,100px);gap:6px;margin-bottom:8px}
+.review-photos img{width:100px;height:100px;object-fit:cover;border-radius:6px;border:1px solid var(--border)}
+.review-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11px;color:var(--green);font-weight:600;
+  background:#E8F7EF;padding:3px 8px;border-radius:3px;
+}
+.review-anon{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11px;color:var(--muted);
+  background:var(--bg);padding:3px 8px;border-radius:3px;
+}
+
+/* ── ALSO BUY ────────────────────────────────────────────── */
+.also-buy{
+  background:#fff;border:1px solid var(--border);
+  border-radius:8px;padding:24px;margin-top:24px;
+}
+.also-buy h2{font-size:18px;font-weight:700;margin-bottom:20px}
+.also-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+@media(max-width:900px){.also-grid{grid-template-columns:repeat(2,1fr)}}
+.also-card{
+  background:var(--bg);border-radius:8px;
+  padding:14px 12px;text-align:center;
+  border:1px solid var(--border);
+}
+.also-icon{font-size:32px;margin-bottom:8px}
+.also-name{font-size:13px;font-weight:700;margin-bottom:4px;line-height:1.3}
+.also-old{font-size:11px;color:var(--muted);text-decoration:line-through}
+.also-new{font-size:13px;font-weight:700;color:var(--pink)}
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.footer{background:var(--utility);color:rgba(255,255,255,.8);padding:40px 0 24px;margin-top:48px}
+.footer-inner{max-width:1280px;margin:0 auto;padding:0 24px}
+.footer-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:24px;margin-bottom:32px;
+}
+.footer-col h4{color:#fff;font-size:14px;font-weight:700;margin-bottom:12px}
+.footer-col a{
+  display:block;font-size:13px;color:rgba(255,255,255,.65);
+  margin-bottom:8px;
+}
+.footer-col a:hover{color:#fff}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.15);
+  padding-top:20px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+.footer-logo{
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;
+  color:#fff;letter-spacing:-0.5px;
+}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.5);line-height:1.6}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media(max-width:1100px){
+  .product-grid{grid-template-columns:1fr 1fr}
+  .price-panel{grid-column:1/-1;position:static}
+}
+@media(max-width:768px){
+  .utility-bar .utility-links,.utility-right{display:none}
+  .product-grid{grid-template-columns:1fr}
+  .gallery{position:static}
+  .also-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+  .rating-summary{flex-direction:column;gap:16px}
+}
+@media(max-width:480px){
+  .header-inner{flex-wrap:wrap}
+  .logo{width:100%;text-align:center}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ── UTILITY BAR ──────────────────────────────────────── -->
+<div class="utility-bar">
+  <div class="utility-inner">
+    <div class="utility-left">
+      <span class="utility-city">📍 Москва</span>
+      <div class="utility-links">
+        <a href="#">Как бизнес</a>
+        <a href="#">WB Клуб</a>
+        <a href="#">Реклама</a>
+        <a href="#">Вакансии</a>
+      </div>
+    </div>
+    <div class="utility-right">
+      <a href="#">Продавцам</a>
+      <a href="#">Покупателям</a>
+      <a href="#">Помощь</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── HEADER ────────────────────────────────────────────── -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">Владимири<span>С</span></div>
+    <div class="search-wrap">
+      <input type="text" placeholder="Найти товар или бренд..." />
+      <button>🔍</button>
+    </div>
+    <div class="header-icons">
+      <div class="hicon">
+        <span class="ico">📦</span>
+        <span>Заказы</span>
+      </div>
+      <div class="hicon">
+        <span class="ico">❤️</span>
+        <span>Избранное</span>
+      </div>
+      <div class="hicon">
+        <span class="ico">👤</span>
+        <span>Профиль</span>
+      </div>
+      <div class="hicon" style="position:relative">
+        <span class="ico">🛒</span>
+        <span>Корзина</span>
+        <span class="cart-badge">1</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── CATEGORY NAV ──────────────────────────────────────── -->
+<nav class="nav-cats">
+  <div class="nav-cats-inner">
+    <a href="#" class="cat-link">Каталог</a>
+    <a href="#" class="cat-link active">Сотрудники</a>
+    <a href="#" class="cat-link">Менеджеры</a>
+    <a href="#" class="cat-link">Лимитед эдишн</a>
+    <a href="#" class="cat-link">Pro Max серия</a>
+    <a href="#" class="cat-link">Акции</a>
+    <a href="#" class="cat-link">Новинки</a>
+    <a href="#" class="cat-link">Бренды</a>
+  </div>
+</nav>
+
+<!-- ── BREADCRUMB ────────────────────────────────────────── -->
+<div class="breadcrumb">
+  <a href="#">Главная</a>
+  <span>→</span>
+  <a href="#">Сотрудники</a>
+  <span>→</span>
+  <a href="#">Менеджеры Pro</a>
+  <span>→</span>
+  <span style="color:var(--text)">Владимир Pro Max 40</span>
+</div>
+
+<!-- ── PRODUCT PAGE ──────────────────────────────────────── -->
+<div class="product-page">
+  <div class="product-grid">
+
+    <!-- GALLERY -->
+    <div class="gallery">
+      <div class="main-photo">
+        <img src="images/img_01.jpg" id="mainImg" alt="Владимир Pro Max 40" />
+        <div class="color-badge">
+          <div class="color-dot"></div>
+          Оранжевый / Orange Sunset
+        </div>
+      </div>
+      <div class="thumbs">
+        <div class="thumb active" onclick="setImg('images/img_01.jpg',this)"><img src="images/img_01.jpg" /></div>
+        <div class="thumb" onclick="setImg('images/img_03.jpg',this)"><img src="images/img_03.jpg" /></div>
+        <div class="thumb" onclick="setImg('images/img_04.jpg',this)"><img src="images/img_04.jpg" /></div>
+        <div class="thumb" onclick="setImg('images/img_05.png',this)"><img src="images/img_05.png" /></div>
+        <div class="thumb" onclick="setImg('images/img_06.png',this)"><img src="images/img_06.png" /></div>
+      </div>
+    </div>
+
+    <!-- PRODUCT INFO -->
+    <div class="product-info">
+      <div class="store-link">🏢 ВладимириС Official Store</div>
+      <h1 class="product-title">Владимир Pro Max 40 — Юбилейное издание 🎂</h1>
+
+      <div class="rating-row">
+        <span class="stars">★★★★★</span>
+        <span class="rating-num">4.9</span>
+        <a href="#reviews" class="reviews-count">📝 347 отзывов</a>
+      </div>
+
+      <div class="badges">
+        <span class="badge badge-promo">🔥 Pro Max</span>
+        <span class="badge badge-stock">✅ В команде</span>
+        <span class="badge badge-bday">🎂 40 лет</span>
+        <span class="badge badge-limited">Лимитед эдишн</span>
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="desc-block">
+        <h3>📄 Описание товара</h3>
+        <div class="desc-text">
+          <p>Флагманская модель линейки «Владимир» в лимитированном оранжевом исполнении. Сорок лет непрерывных обновлений — ни одного отката к предыдущей версии.</p>
+          <div class="warn-box">
+            <strong>⚠️ Внимание:</strong> сам раздаёт задачи. Если запустить — не остановите. Поставляется без инструкции: инструкция сразу становится неактуальной.
+          </div>
+          <p>В зоне действия Pro Max 40 команда начинает мыслить чётче, говорить короче и достигать целей, которые вчера казались нереальными.</p>
+          <p style="margin-top:10px;font-style:italic;color:var(--muted)">Побочный эффект: острое желание соответствовать.</p>
+        </div>
+        <div class="guarantee-grid">
+          <div class="guarantee-item"><strong>💬 Гарантия</strong>не указана. По факту — бессрочная.</div>
+          <div class="guarantee-item"><strong>Возврат</strong>невозможен: уже знает про вас всё.</div>
+          <div class="guarantee-item"><strong>Режим «не беспокоить»</strong>не поддерживается.</div>
+          <div class="guarantee-item" style="background:var(--pink-pale);"><strong style="color:var(--pink)">📦 Комплект</strong>ноутбук, позиция по каждому вопросу, список улучшений для вашего отдела</div>
+        </div>
+      </div>
+
+      <!-- SPECS -->
+      <div class="desc-block">
+        <h3>⚙️ Характеристики</h3>
+        <table class="specs-table">
+          <tr><td>Версия</td><td><strong>Pro Max 40.0.0</strong></td></tr>
+          <tr><td>Цвет</td><td>🟠 Оранжевый</td></tr>
+          <tr><td>Режим работы</td><td>24/7 + инициатива</td></tr>
+          <tr><td>Питание</td><td>Кофе / амбиции</td></tr>
+        </table>
+
+        <div style="margin-top:16px">
+          <div class="stat-row">
+            <span class="stat-label">💪 Выносливость</span>
+            <div class="stat-bar"><div class="stat-fill" style="width:97%"></div></div>
+            <span class="stat-val">97%</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">⚡ Скорость решений</span>
+            <div class="stat-bar"><div class="stat-fill" style="width:99%"></div></div>
+            <span class="stat-val">99%</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">📈 KPI</span>
+            <div class="stat-bar"><div class="stat-fill" style="width:100%"></div></div>
+            <span class="stat-val">MAX</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">🧠 Excel-память</span>
+            <div class="stat-bar"><div class="stat-fill" style="width:100%"></div></div>
+            <span class="stat-val">MAX</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">😤 Устойчивость к дедлайнам</span>
+            <div class="stat-bar"><div class="stat-fill" style="width:88%"></div></div>
+            <span class="stat-val">88%</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">📢 Громкость коммуникации</span>
+            <div class="stat-bar"><div class="stat-fill" style="width:95%"></div></div>
+            <span class="stat-val">95%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERKS -->
+      <div class="desc-block">
+        <h3>🎮 Перки (задокументированы пользователями):</h3>
+        <div class="perks">
+          <div class="perk">
+            <span class="perk-badge">+2</span>
+            <span class="perk-text">к «Прагматизм», «Здравомыслие», «Критическое мышление»</span>
+          </div>
+          <div class="perk">
+            <span class="perk-badge" style="color:var(--red)">−5</span>
+            <span class="perk-text">к «Балабол» — научит говорить коротко и по делу</span>
+          </div>
+          <div class="perk">
+            <span class="perk-badge" style="color:var(--green)">∞</span>
+            <span class="perk-text">к «Вера в невозможное» — амбициозные цели почему-то достигаются</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- KIT -->
+      <div class="kit-section">
+        <h3>🎁 В комплекте идут:</h3>
+        <div class="kit-row">
+          <div class="kit-photo"><img src="images/img_07.png" alt="Кошка Ева" /></div>
+          <div>
+            <div class="kit-label">🐱 Кошка Ева (сфинкс)</div>
+            <div class="kit-desc">Смотрит с прищуром. Характер — под стать владельцу. Одобрения не раздаёт, но в душе добрая.</div>
+            <span class="kit-tag">✅ Включена в стоимость</span>
+          </div>
+        </div>
+        <div class="kit-also">
+          📋 Также в комплекте: мнение обо всех процессах, готовый план на квартал, +2 перка к здравомыслию команды и бесплатный аудит вашего Excel
+        </div>
+      </div>
+
+      <!-- DELIVERY INFO (mobile duplicate) -->
+      <div class="delivery-info" style="display:none" id="deliveryMob">
+        <div class="delivery-row"><span class="ico">👥</span><span><strong>Уже в команде</strong> — активирован с понедельника по воскресенье</span></div>
+        <div class="delivery-row"><span class="ico">🔄</span><span>Возврат невозможен: уже провёл ревью всех процессов и написал план на квартал</span></div>
+      </div>
+    </div>
+
+    <!-- PRICE PANEL -->
+    <div class="price-panel">
+      <div class="price-main">∞ ₽</div>
+      <div class="price-old">999 999 ₽</div>
+      <span class="price-badge">−∞%</span>
+      <div class="price-note">💳 Бесценный актив. Рассрочка невозможна — не делится.</div>
+
+      <div class="delivery-info">
+        <div class="delivery-row"><span class="ico">👥</span><span><strong>Уже в команде</strong> — активирован с понедельника по воскресенье</span></div>
+        <div class="delivery-row"><span class="ico">📦</span><span>Комплект: ноутбук, позиция по каждому вопросу, список улучшений для вашего отдела</span></div>
+        <div class="delivery-row"><span class="ico">🔄</span><span>Возврат невозможен: уже провёл ревью всех процессов и написал план на квартал</span></div>
+      </div>
+
+      <div class="stock-warn">
+        ⚠️ Осталось: <strong>1 шт.</strong> — единственный экземпляр в оранжевом!
+      </div>
+
+      <div class="color-select">
+        <div class="color-label">Цвет</div>
+        <div class="color-opt"></div>
+      </div>
+
+      <button class="btn-buy btn-buy-now">⚡ Купить сейчас</button>
+      <button class="btn-buy btn-add-cart">🛒 В корзину</button>
+      <div class="panel-bonus">🏆 За покупку — +40 бонусных лет мудрости</div>
+    </div>
+
+  </div><!-- /product-grid -->
+
+  <!-- REVIEWS -->
+  <div class="reviews-section" id="reviews">
+    <h2>📝 Отзывы покупателей (347)</h2>
+
+    <div class="rating-summary">
+      <div class="big-rating">
+        <div class="big-num">4.9</div>
+        <div class="big-stars">★★★★★</div>
+        <div class="big-count">347 отзывов</div>
+      </div>
+      <div class="rating-bars">
+        <div class="rbar-row"><span class="rbar-label">5 ★</span><div class="rbar-track"><div class="rbar-fill" style="width:94%"></div></div><span class="rbar-count">326</span></div>
+        <div class="rbar-row"><span class="rbar-label">4 ★</span><div class="rbar-track"><div class="rbar-fill" style="width:4%"></div></div><span class="rbar-count">14</span></div>
+        <div class="rbar-row"><span class="rbar-label">3 ★</span><div class="rbar-track"><div class="rbar-fill" style="width:1%"></div></div><span class="rbar-count">5</span></div>
+        <div class="rbar-row"><span class="rbar-label">2 ★</span><div class="rbar-track"><div class="rbar-fill" style="width:1%"></div></div><span class="rbar-count">2</span></div>
+        <div class="rbar-row"><span class="rbar-label">1 ★</span><div class="rbar-track"><div class="rbar-fill" style="width:0%"></div></div><span class="rbar-count">0</span></div>
+      </div>
+    </div>
+
+    <div class="review-cards">
+
+      <!-- Review 1 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">👨‍💻</div>
+          <div>
+            <div class="reviewer-name">Антон</div>
+            <div class="reviewer-role">Программист</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto">★★★★★</div>
+        </div>
+        <div class="review-text">При всём стремлении создать идеально логичную машину-управленца — видны черты живого человека: терпение, умение ошибаться и самостоятельно исправлять.<br><br>Надеюсь, будущие модели сохранят эту «человечность». С полными роботами работать неинтересно.</div>
+        <span class="review-badge">✅ Подтверждённая покупка</span>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">👩‍💼</div>
+          <div>
+            <div class="reviewer-name">Маргарита</div>
+            <div class="reviewer-role">Менеджер по работе с клиентами</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto">★★★★★</div>
+        </div>
+        <div class="review-text">Заказывали однажды — вернулись навсегда. Поставляется без инструкции, работает интуитивно: дал задачу — получи результат.<br><br>Гарантия не указана, по факту бессрочная. Единственный минус — требует апгрейда всей команды под свой уровень.</div>
+        <span class="review-badge">✅ Подтверждённая покупка</span>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">✨</div>
+          <div>
+            <div class="reviewer-name">Дарья</div>
+            <div class="reviewer-role">Инфлюенс-менеджер</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto">★★★★★</div>
+        </div>
+        <div class="review-text">Есть суперспособность, которую сложно описать в характеристиках: заставляет верить в амбициозные цели — даже те, что раньше казались нереальными.<br><br>И самое странное — они достигаются. Каждый раз.</div>
+        <span class="review-badge">✅ Подтверждённая покупка</span>
+      </div>
+
+      <!-- Review 4 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🌸</div>
+          <div>
+            <div class="reviewer-name">Ольга</div>
+            <div class="reviewer-role">Ассистент, удалённый формат</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto">★★★★★</div>
+        </div>
+        <div class="review-text">Использую удалённо — связь стабильная, сигнал не теряется даже в сложных условиях. Батарея не садится. Режим «не беспокоить» не поддерживается от слова совсем.<br><br>Из минусов: иногда слишком быстро обрабатывает входящие — не успеваешь отправить, а он уже отвечает. Для ассистента это, конечно, проблема 😅</div>
+        <span class="review-badge">✅ Подтверждённая покупка</span>
+      </div>
+
+      <!-- Review 5 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">📋</div>
+          <div>
+            <div class="reviewer-name">Андрей</div>
+            <div class="reviewer-role">Операционный директор</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto">★★★★☆</div>
+        </div>
+        <div class="review-text">Работал с версией 39. Обновление рекомендую с осторожностью — пришёл из уютного мира клиентского сервиса и не ожидал такого.<br><br>Лучшее соотношение ценности к боли: <strong>10/10</strong>. Версия 40 мощнее — качайте мозги заранее. 🐱 Кот в комплекте прилагается.</div>
+        <div class="review-photos">
+          <img src="images/img_08.png" alt="Фото отзыв" />
+          <img src="images/img_09.png" alt="Фото отзыв" />
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:8px">📸 Лицо версии 39 в процессе эксплуатации</div>
+        <span class="review-badge">✅ Подтверждённая покупка</span>
+      </div>
+
+      <!-- Review 6 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🕵️</div>
+          <div>
+            <div class="reviewer-name">Аноним</div>
+            <div class="reviewer-role">Засекреченный сотрудник</div>
+          </div>
+          <div class="review-stars" style="margin-left:auto">★★★★★</div>
+        </div>
+        <div class="review-text">Скорость решений: мгновенная*. Режим: 24/7 без перезагрузки. Давление на команду: стабильно высокое — держит в тонусе. Производительность: MAX при любых входных данных.<br><br>Если нужен результат — он будет! Иногда неожиданным способом, но будет 😅 Для тех, кто готов работать на максимуме 💪<br><br><em style="color:var(--muted);font-size:12px">* иногда раньше, чем собрана вся информация</em></div>
+        <span class="review-anon">🕵️ Личность засекречена</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ALSO BUY -->
+  <div class="also-buy">
+    <h2>🛒 С этим товаром покупают</h2>
+    <div class="also-grid">
+      <div class="also-card">
+        <div class="also-icon">💀</div>
+        <div class="also-name">Сорванный дедлайн Pro</div>
+        <div class="also-old">было: вовремя</div>
+        <div class="also-new">+2 недели</div>
+      </div>
+      <div class="also-card">
+        <div class="also-icon">📊</div>
+        <div class="also-name">Отчёт №47</div>
+        <div class="also-old">предыдущий: вчера</div>
+        <div class="also-new">Каждый понедельник</div>
+      </div>
+      <div class="also-card">
+        <div class="also-icon">🗓️</div>
+        <div class="also-name">Митинг «на 5 минут»</div>
+        <div class="also-old">по плану: 5 мин</div>
+        <div class="also-new">Факт: 2 часа</div>
+      </div>
+      <div class="also-card">
+        <div class="also-icon">☕</div>
+        <div class="also-name">Кофе №8 за день</div>
+        <div class="also-old">норма: 2 чашки</div>
+        <div class="also-new">Безлимит</div>
+      </div>
+      <div class="also-card">
+        <div class="also-icon">🔥</div>
+        <div class="also-name">Срочная задача</div>
+        <div class="also-old">была: несрочной</div>
+        <div class="also-new">На вчера</div>
+      </div>
+      <div class="also-card">
+        <div class="also-icon">📋</div>
+        <div class="also-name">Таблица-улучшайзер</div>
+        <div class="also-old">оригинал: 3 строки</div>
+        <div class="also-new">Итого: 847 строк</div>
+      </div>
+      <div class="also-card">
+        <div class="also-icon">💡</div>
+        <div class="also-name">Идея в 18:55</div>
+        <div class="also-old">конец дня: 19:00</div>
+        <div class="also-new">Пятница. Всегда.</div>
+      </div>
+      <div class="also-card">
+        <div class="also-icon">🤯</div>
+        <div class="also-name">Переработка выходных</div>
+        <div class="also-old">план: отдых</div>
+        <div class="also-new">Подарок каждую неделю</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /product-page -->
+
+<!-- ── FOOTER ────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>ВладимириС</h4>
+        <a href="#">О компании</a>
+        <a href="#">Вакансии</a>
+        <a href="#">Реклама</a>
+        <a href="#">Пресс-центр</a>
+      </div>
+      <div class="footer-col">
+        <h4>Покупателям</h4>
+        <a href="#">Как сделать заказ</a>
+        <a href="#">Способы оплаты</a>
+        <a href="#">Доставка</a>
+        <a href="#">Возврат</a>
+      </div>
+      <div class="footer-col">
+        <h4>Партнёрам</h4>
+        <a href="#">Продавцам</a>
+        <a href="#">Бренды</a>
+        <a href="#">WB Клуб</a>
+        <a href="#">API</a>
+      </div>
+      <div class="footer-col">
+        <h4>Помощь</h4>
+        <a href="#">Служба поддержки</a>
+        <a href="#">Пункты выдачи</a>
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Оферта</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-logo">ВладимириС</div>
+      <div class="footer-copy">
+        © 2024 Vladimaris Marketplace. Все права защищены. Владимир не продаётся — он выдаётся судьбой.<br>
+        Лендинг создан с любовью ❤️ | Реальный Владимир бесценен
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function setImg(src, el) {
+  document.getElementById('mainImg').src = src;
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
