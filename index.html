@@ -3,35 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Владимир Pro Max 40 — ВладимириС</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Владимир Pro Max 40 — Vladimaris</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --pink:       #CB11AB;
-  --pink-dark:  #A30D8A;
-  --pink-light: #E040C8;
-  --pink-pale:  #FDF0FB;
-  --pink-mid:   #F2C8ED;
-  --utility:    #4A0D3A;
-  --bg:         #F5F0F5;
+  --pink:       #A73AFB;
+  --pink-dark:  #8E2DE2;
+  --pink-light: #C95CFF;
+  --pink-pale:  #F6ECFF;
+  --pink-mid:   #E7D3FB;
+  --utility:    #A73AFB;
+  --utility-dark:#8E2DE2;
+  --bg:         #F6F6FA;
   --white:      #FFFFFF;
   --star:       #FFB800;
-  --green:      #1AA05B;
-  --red:        #E02B2B;
-  --border:     #EBEBEB;
-  --text:       #1C1C1C;
-  --muted:      #757575;
-  --tag-bg:     #F8F0F7;
+  --green:      #16A34A;
+  --red:        #E53935;
+  --border:     #E9E9EF;
+  --text:       #1F1F24;
+  --muted:      #7B7B88;
+  --tag-bg:     #F7F3FF;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:14px;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
 a{text-decoration:none;color:inherit}
 
 /* ── UTILITY BAR ─────────────────────────────────────────── */
 .utility-bar{
-  background:var(--utility);
-  color:rgba(255,255,255,.75);
+  background:linear-gradient(90deg, #D946C5 0%, #A73AFB 55%, #7C3AED 100%);
+  color:rgba(255,255,255,.88);
   font-size:12px;
   padding:6px 0;
 }
@@ -52,51 +60,104 @@ a{text-decoration:none;color:inherit}
 
 /* ── HEADER ──────────────────────────────────────────────── */
 .header{
-  background:#fff;
-  border-bottom:1px solid var(--border);
-  position:sticky;top:0;z-index:100;
+  background:linear-gradient(90deg, #D946C5 0%, #A73AFB 55%, #7C3AED 100%);
+  border-bottom:none;
+  position:sticky;
+  top:0;
+  z-index:100;
 }
 .header-inner{
-  max-width:1280px;margin:0 auto;
-  padding:12px 24px;
-  display:flex;align-items:center;gap:20px;
+  max-width:1280px;
+  margin:0 auto;
+  padding:10px 24px 14px;
+  display:flex;
+  align-items:center;
+  gap:20px;
 }
 .logo{
-  font-family:'Nunito',sans-serif;
-  font-weight:900;font-size:22px;
-  color:var(--pink);
-  white-space:nowrap;letter-spacing:-0.5px;
+  font-family:'Inter',sans-serif;
+  font-weight:800;
+  font-size:20px;
+  color:#fff;
+  white-space:nowrap;
+  letter-spacing:-0.8px;
   min-width:fit-content;
+}
+.logo span{
+  color:#fff;
+  opacity:.92;
 }
 .logo span{color:var(--utility)}
 .search-wrap{flex:1;display:flex}
 .search-wrap input{
-  flex:1;border:2px solid var(--pink);border-right:none;
-  border-radius:4px 0 0 4px;
-  padding:9px 14px;font-size:14px;outline:none;
+  flex:1;
+  border:none;
+  border-radius:12px 0 0 12px;
+  padding:13px 16px;
+  font-size:14px;
+  outline:none;
   font-family:'Inter',sans-serif;
+  background:#fff;
+  color:var(--text);
 }
 .search-wrap button{
-  background:var(--pink);color:#fff;border:none;
-  padding:9px 16px;border-radius:0 4px 4px 0;cursor:pointer;
-  font-size:16px;
+  background:#fff;
+  color:var(--muted);
+  border:none;
+  padding:0 16px;
+  border-radius:0 12px 12px 0;
+  cursor:pointer;
+  font-size:18px;
 }
 .search-wrap button:hover{background:var(--pink-dark)}
-.header-icons{display:flex;gap:4px;align-items:center}
-.hicon{
-  display:flex;flex-direction:column;align-items:center;
-  gap:2px;padding:6px 10px;border-radius:6px;cursor:pointer;
-  color:var(--muted);font-size:11px;white-space:nowrap;
-  position:relative;
+.header-icons{
+  display:flex;
+  gap:14px;
+  align-items:center;
 }
-.hicon:hover{background:var(--bg);color:var(--pink)}
-.hicon svg,.hicon .ico{font-size:20px}
+
+.hicon{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  padding:4px 6px;
+  border-radius:8px;
+  cursor:pointer;
+  color:rgba(255,255,255,.88);
+  font-size:12px;
+  white-space:nowrap;
+  position:relative;
+  transition:all .15s ease;
+}
+
+.hicon:hover{
+  color:#fff;
+  background:rgba(255,255,255,.08);
+}
+
+.hicon svg,
+.hicon .ico{
+  font-size:19px;
+  line-height:1;
+}
+
 .cart-badge{
-  position:absolute;top:2px;right:6px;
-  background:var(--pink);color:#fff;
-  font-size:10px;font-weight:700;
-  width:16px;height:16px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
+  position:absolute;
+  top:-1px;
+  right:0;
+  background:#FF7A00;
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+  min-width:16px;
+  height:16px;
+  padding:0 4px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 0 0 2px rgba(167,58,251,.45);
 }
 
 /* ── NAV CATEGORIES ──────────────────────────────────────── */
@@ -111,10 +172,17 @@ a{text-decoration:none;color:inherit}
 .nav-cats-inner::-webkit-scrollbar{height:2px}
 .nav-cats-inner::-webkit-scrollbar-thumb{background:var(--pink)}
 .cat-link{
-  padding:10px 16px;font-size:13px;font-weight:500;
-  color:var(--text);white-space:nowrap;
+  padding:12px 14px;
+  font-size:13px;
+  font-weight:500;
+  color:#5F6370;
+  white-space:nowrap;
   border-bottom:2px solid transparent;
   transition:all .15s;
+}
+.cat-link:hover,.cat-link.active{
+  color:var(--pink);
+  border-bottom-color:var(--pink);
 }
 .cat-link:hover,.cat-link.active{
   color:var(--pink);border-bottom-color:var(--pink);
@@ -146,13 +214,24 @@ a{text-decoration:none;color:inherit}
 /* ── GALLERY ─────────────────────────────────────────────── */
 .gallery{position:sticky;top:80px}
 .main-photo{
-  background:#fff;border:1px solid var(--border);
-  border-radius:8px;overflow:hidden;
-  position:relative;margin-bottom:10px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:8px;
+  position:relative;
+  margin-bottom:10px;
+
+  height:500px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
+
 .main-photo img{
-  width:100%;aspect-ratio:1/1;
-  object-fit:cover;object-position:center top;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
   display:block;
 }
 .color-badge{
@@ -166,14 +245,33 @@ a{text-decoration:none;color:inherit}
   background:linear-gradient(135deg,#f47920,#ff8c42);
   border:1px solid rgba(255,255,255,.5);
 }
-.thumbs{display:flex;gap:8px;flex-wrap:wrap}
-.thumb{
-  width:72px;height:72px;
-  border:2px solid var(--border);border-radius:6px;
-  overflow:hidden;cursor:pointer;transition:border-color .15s;
+.thumbs{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
 }
-.thumb:hover,.thumb.active{border-color:var(--pink)}
-.thumb img{width:100%;height:100%;object-fit:cover;object-position:center top}
+
+.thumb{
+  width:76px;
+  height:96px;
+  border:2px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color .15s;
+  background:#fff;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.thumb img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  display:block;
+}
 
 /* ── PRODUCT INFO ────────────────────────────────────────── */
 .product-info{}
@@ -306,15 +404,39 @@ a{text-decoration:none;color:inherit}
   border:3px solid var(--pink);cursor:pointer;
 }
 .btn-buy{
-  width:100%;padding:13px;border:none;border-radius:6px;
-  font-size:15px;font-weight:700;cursor:pointer;
-  margin-bottom:10px;transition:background .15s;
+  width:100%;
+  padding:15px 18px;
+  border:none;
+  border-radius:12px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  margin-bottom:12px;
+  transition:all .18s ease;
   font-family:'Inter',sans-serif;
 }
-.btn-buy-now{background:var(--pink);color:#fff}
-.btn-buy-now:hover{background:var(--pink-dark)}
-.btn-add-cart{background:var(--pink-pale);color:var(--pink);border:1.5px solid var(--pink-mid)}
-.btn-add-cart:hover{background:var(--pink-mid)}
+
+.btn-buy-now{
+  background:linear-gradient(90deg, #A73AFB 0%, #C243F3 100%);
+  color:#fff;
+  box-shadow:0 6px 16px rgba(167,58,251,.22);
+}
+
+.btn-buy-now:hover{
+  background:linear-gradient(90deg, #9532E8 0%, #B63BEA 100%);
+  transform:translateY(-1px);
+}
+
+.btn-add-cart{
+  background:#F3E8FF;
+  color:#8E2DE2;
+  border:1px solid #E3CCFF;
+}
+
+.btn-add-cart:hover{
+  background:#EAD9FF;
+  border-color:#D5B8FF;
+}
 .panel-bonus{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
 
 /* ── REVIEWS ─────────────────────────────────────────────── */
@@ -461,7 +583,7 @@ a{text-decoration:none;color:inherit}
 <!-- ── HEADER ────────────────────────────────────────────── -->
 <header class="header">
   <div class="header-inner">
-    <div class="logo">Владимири<span>С</span></div>
+    <div class="logo">VLADIMIRRIES<span></span></div>
     <div class="search-wrap">
       <input type="text" placeholder="Найти товар или бренд..." />
       <button>🔍</button>
@@ -521,10 +643,6 @@ a{text-decoration:none;color:inherit}
     <div class="gallery">
       <div class="main-photo">
         <img src="images/img_01.jpg" id="mainImg" alt="Владимир Pro Max 40" />
-        <div class="color-badge">
-          <div class="color-dot"></div>
-          Оранжевый / Orange Sunset
-        </div>
       </div>
       <div class="thumbs">
         <div class="thumb active" onclick="setImg('images/img_01.jpg',this)"><img src="images/img_01.jpg" /></div>
@@ -537,7 +655,7 @@ a{text-decoration:none;color:inherit}
 
     <!-- PRODUCT INFO -->
     <div class="product-info">
-      <div class="store-link">🏢 ВладимириС Official Store</div>
+      <div class="store-link">🏢 VladimariS Official Store</div>
       <h1 class="product-title">Владимир Pro Max 40 — Юбилейное издание 🎂</h1>
 
       <div class="rating-row">
@@ -862,7 +980,7 @@ a{text-decoration:none;color:inherit}
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-col">
-        <h4>ВладимириС</h4>
+        <h4>VladimariS</h4>
         <a href="#">О компании</a>
         <a href="#">Вакансии</a>
         <a href="#">Реклама</a>
@@ -891,7 +1009,7 @@ a{text-decoration:none;color:inherit}
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-logo">ВладимириС</div>
+      <div class="footer-logo">VladimariS</div>
       <div class="footer-copy">
         © 2024 Vladimaris Marketplace. Все права защищены. Владимир не продаётся — он выдаётся судьбой.<br>
         Лендинг создан с любовью ❤️ | Реальный Владимир бесценен
